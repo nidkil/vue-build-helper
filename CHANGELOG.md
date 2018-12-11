@@ -1,3 +1,12 @@
+# 0.1.0 (2018-12-11)
+
+
+### Features
+
+* initial commit ([cbed220](https://github.com/nidkil/vue-build-helper/commit/cbed220))
+
+
+
 ## [0.0.5](https://github.com/nidkil/vue-build-helper/compare/v0.0.4...v0.0.5) (2018-12-05)
 
 
