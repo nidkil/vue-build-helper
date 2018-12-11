@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "extends": ["prettier", "prettier/standard"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": ["bin/*.js", "src/*.js", "test/*.js"],
+      "excludedFiles": "dist/*.js",
+      "rules": {
+        "quotes": [2, "single"],
+        "prettier/prettier": "error"
+      }
+    }
+  ]
+}

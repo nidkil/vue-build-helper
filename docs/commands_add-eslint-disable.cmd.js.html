@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: commands/add-eslint-disable.cmd.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: commands/add-eslint-disable.cmd.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { addLineToFile, fileExists, getLineFromFile } = require('../common/fs-helpers')
+const FileHound = require('filehound')
+
+// TODO move to shared module
+const eslintDisable = '/* eslint-disable */'
+// TODO move to shared module
+const filterOn = 'common.js'
+// Enable or disable verbose output to stdout
+let verbose = false
+
+/**
+ * Custom filter to filter files by (*.common.js).
+ * @param {Object} file - The file object
+ * @returns {boolean} true if the file meets the filter, otherwise false
+ */
+// TODO move to shared module
+function customFilter (file) {
+  return file._pathname.endsWith(filterOn) > 0
+}
+
+/**
+ * Add eslint disable to a file.
+ * @param {String} filePath - A fully qualified path to the file to process
+ * @returns {Promise&lt;void>} a promise
+ */
+async function processFile (filePath) {
+  verbose &amp;&amp; console.log('File to disable eslint for: ' + filePath)
+  const line = getLineFromFile(filePath, 0)
+  if (line !== eslintDisable) {
+    addLineToFile(filePath, eslintDisable)
+    verbose &amp;&amp; console.log('Added eslint disable to file: ' + filePath)
+  } else {
+    verbose &amp;&amp; console.log('File already has eslint disable, skipping: ' + filePath)
+  }
+}
+
+/**
+ * Retrieve a file (srcFilePath) or files (buildDestPath) that meet a specific filename filter. Specify either file
+ * source path (single file mode) or build destination path (multi file mode).
+ * If buildDestPath is specified it recursively search from this start directory for any files that match the file
+ * filter.
+ * @param {String} srcFilePath - A fully qualified path to the file to process
+ * @param {String} buildDestPath - A fully qualified path to the directory to start processing from
+ * @returns {Array} with files to process
+ * @throws exception if both srcFilePath and buildDestPath are specified
+ */
+function getFiles (srcFilePath, buildDestPath) {
+  if (srcFilePath &amp;&amp; buildDestPath) {
+    throw 'Specify either file source path (single file mode) or build destination path (multi file mode)'
+  }
+  let files = []
+  if (srcFilePath) {
+    if (!fileExists(srcFilePath)) {
+      console.log('File to disable eslint for does not exist')
+      process.exit(0)
+    }
+    files = [ srcFilePath ]
+  } else {
+    // Recursively search from start directory for any files that match the file filter
+    files = FileHound.create()
+      .paths(buildDestPath)
+      .addFilter(customFilter)
+      .findSync()
+  }
+  return files
+}
+
+/**
+ * Entry point to module. Adds eslint disable to a file (srcFilePath) or files (buildDestPath) that meet a specific
+ * filename filter.
+ *
+ * Takes the following option object:
+ * {
+ *   srcFilePath:   the file to add eslint disable to (single file mode)
+ *   buildDestPath: the start directory to start searching for any files that match the file filter (*.common.js) to
+ *                  add eslint disable to (multi file mode)
+ *   verbose:       output debugging information to stdout
+ * }
+ *
+ * Specify either file source path (single file mode) or build destination path (multi file mode).
+ *
+ * @param {Object} options - See description above
+ */
+function addEslintDisable (options) {
+  if (!options.srcFilePath &amp;&amp; !options.buildDestPath) {
+    throw 'Source file or build destination must be specified'
+  }
+  verbose = options &amp;&amp; options.verbose ? options.verbose : false
+  verbose &amp;&amp; console.log('add-eslint-disable', JSON.stringify(options, null, '\t'))
+  const files = getFiles(options.srcFilePath, options.buildDestPath)
+  if (files.length === 0) {
+    verbose &amp;&amp; console.log('No files to process')
+  } else {
+    files.forEach(async filePath => {
+      await processFile(filePath)
+    })
+  }
+}
+
+module.exports = addEslintDisable
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addEslintDisable">addEslintDisable</a></li><li><a href="global.html#all">all</a></li><li><a href="global.html#correctPathSeparator">correctPathSeparator</a></li><li><a href="global.html#createDefaultExport">createDefaultExport</a></li><li><a href="global.html#createExports">createExports</a></li><li><a href="global.html#createNamedExport">createNamedExport</a></li><li><a href="global.html#customFilter">customFilter</a></li><li><a href="global.html#getFiles">getFiles</a></li><li><a href="global.html#getModuleParts">getModuleParts</a></li><li><a href="global.html#processFile">processFile</a></li><li><a href="global.html#processFiles">processFiles</a></li><li><a href="global.html#rmdir">rmdir</a></li><li><a href="global.html#stripBuildDest">stripBuildDest</a></li><li><a href="global.html#stripExt">stripExt</a></li><li><a href="global.html#stripFilter">stripFilter</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Dec 03 2018 22:45:04 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

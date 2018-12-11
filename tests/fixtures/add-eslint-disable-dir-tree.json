@@ -1,0 +1,62 @@
+{
+  "tree": [
+    {
+      "path": "",
+      "name": "test-structure",
+      "type": "directory",
+      "children": [
+        {
+          "path": "component1",
+          "name": "component1",
+          "type": "directory",
+          "children": [
+            {
+              "path": "component1/component1.common.js",
+              "name": "component1.common.js",
+              "type": "file",
+              "disabled": true
+            },
+            {
+              "path": "component1/ignore-me.js",
+              "name": "ignore-me.js",
+              "type": "file",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "path": "component2",
+          "name": "component2",
+          "type": "directory",
+          "children": [
+            {
+              "path": "component2/component2.common.js",
+              "name": "component2.common.js",
+              "type": "file",
+              "disabled": true
+            },
+            {
+              "path": "component2/ignore-me.js",
+              "name": "ignore-me.js",
+              "type": "file",
+              "disabled": false
+            }
+          ]
+        },
+        {
+          "path": "no-component",
+          "name": "no-component",
+          "type": "directory",
+          "children": [
+            {
+              "path": "no-component/ignore-me.js",
+              "name": "ignore-me.js",
+              "type": "file",
+              "disabled": false
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
