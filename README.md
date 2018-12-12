@@ -20,7 +20,7 @@ The Vue CLI 3 is an awesome tool. The build process is not completely smooth whe
 
 1. It removes the (irritating) `demo.html` files that are useless.
 2. It generates an index file with named exports for all components.
-3. It disables eslint for the components to avoid an avalanche of errors and warnings when testing the component in another project using link with npm or yarn. 
+3. It disables eslint for the components to avoid an avalanche of errors and warnings when testing the component in another project using link with npm or yarn.
 
 These functionalities can be run all together or separately.
 
@@ -29,10 +29,13 @@ These functionalities can be run all together or separately.
 ### Global
 
 Install as a globally available CLI tool using [npm](https://www.npmjs.com/):
+
 ```bash
 npm install --global vue-build-helper
 ```
+
 Or install using [yarn](https://yarnpkg.com):
+
 ```bash
 yarn gloabl add vue-build-helper
 ```
@@ -40,10 +43,13 @@ yarn gloabl add vue-build-helper
 ### Local
 
 Install as a `devDependency` using [npm](https://www.npmjs.com/):
+
 ```bash
 npm install --save-dev vue-build-helper
 ```
+
 Or install using [yarn](https://yarnpkg.com):
+
 ```bash
 yarn add --dev vue-build-helper
 ```
@@ -61,7 +67,7 @@ Add this as a `script` to `package.json`:
 }
 ```
 
-Now you can run `npm run build-helper` from the command line. You can pass it arguments using double dashes (--), i.e. `npm run build-helper -- info`.
+Now you can run `npm run build-helper` from the command line. You can pass it arguments using double dashes (--), e.g. `npm run build-helper -- info`.
 
 ## Usage
 
@@ -73,16 +79,19 @@ The easiest way to use this module is adding it as a `postbuild` script in the `
 {
   "scripts": {
     "build": "vue-build-helper.js-helper.js",
-    "postbuild": "node ./node_modules/vue-build-helper/src/vue-build-helper-cli.js all"
+    "postbuild": "vue-build-helper all"
   }
 }
-``` 
+```
 
 You can also call it directly by executing one of the following commands.
+
 ```bash
 npm run postbuild
 ```
+
 Or:
+
 ```bash
 yarn postbuild
 ```
@@ -90,6 +99,7 @@ yarn postbuild
 ## Additional configuration
 
 ### Running features individually
+
 Features can be run individually by specifying one of the following commands: eslint-disable, delete-demo-html, create-exports.
 
 Example calling the eslint-disable feature for a specific file. Keep in mind that the file is always relative to the build destination directory (default `dist`).
@@ -97,11 +107,13 @@ Example calling the eslint-disable feature for a specific file. Keep in mind tha
 ```json
 {
   "scripts": {
-    "postbuild": "node ./node_modules/vue-build-helper/src/vue-build-helper-cli.js eslint-disable --file TestPlugin/TestPlugin.common.js"
+    "postbuild": "vue-build-helper eslint-disable --file TestPlugin/TestPlugin.common.js"
   }
 }
-``` 
+
+```
 ### Specifying alternative build directory
+
 All commands accept the `--dest` option so that you can specify a different build directory than the default `dist` directory. Keep in mind that the build destination directory is always relative to the current working directory.
 
 Example setting the destination build directory to `build`.
@@ -109,21 +121,22 @@ Example setting the destination build directory to `build`.
 ```json
 {
   "scripts": {
-    "postbuild": "node ./node_modules/vue-build-helper/src/vue-build-helper-cli.js all --dist build"
+    "postbuild": "vue-build-helper all --dist build"
   }
 }
-``` 
-## Tips & tricks
+```
 
-Using `npm run build-helper -- --help` will provide you with an overview of the available commands.
+## Other options
 
-Using `npm run build-helper -- <command> --help` will provide you with an overview of the available options for a command.
- 
-Using `npm run build-helper -- info` will show your operating system and other environment information that is useful if you need to submit an issue.
+- **--help** - Using `npm run build-helper -- --help` will list the available commands.
+
+- **\<command\> --help** - Using `npm run build-helper -- <command> --help` will display information about the specified command and its options.
+
+- **info** - Using `npm run build-helper -- info` will display information about your operating system and other environment information that is useful if you need to submit an issue.
 
 ## Roadmap
 
-Currently nothing on the roadmap. Ideas?
+Currently there is nothing on the roadmap. Suggestions? Please submit an issue.
 
 ## Contributing
 
