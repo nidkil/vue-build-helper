@@ -36,6 +36,7 @@ These functionalities can be run all together or separately.
 - [Other options](#other-options)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
+- [Brag about it](#brag-about-it)
 - [Author](#author)
 
 <!-- tocstop -->
@@ -75,7 +76,7 @@ The following entry will be added to the `devDependencies` section in the `packa
 ```json
 {
   "devDependencies": {
-    "vue-build-helper": "^0.1.3"
+    "vue-build-helper": "^0.1.4"
   }
 }
 ```
