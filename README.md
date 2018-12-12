@@ -54,15 +54,22 @@ Or install using [yarn](https://yarnpkg.com):
 yarn add --dev vue-build-helper
 ```
 
-Add this as a `script` to `package.json`:
+The following entry will be added to the `devDependencies` section in the `package.json` file.
+
+```json
+{
+  "devDependencies": {
+    "vue-build-helper": "^0.0.0"
+  }
+}
+```
+
+Add the following entry to the `scripts` section in the `package.json` file:
 
 ```json
 {
   "scripts": {
     "build-helper": "vue-build-helper"
-  },
-  "devDependencies": {
-    "vue-build-helper": "^0.0.0"
   }
 }
 ```
