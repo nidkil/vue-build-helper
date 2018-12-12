@@ -22,13 +22,10 @@
   "browser": "./dist/build-helper.min.js",
   "unpkg": "./dist/build-helper.min.js",
   "files": [
-    "LICENSE.md",
-    "README.md",
     "bin",
     "dist",
     "src",
-    "*.js",
-    "*.json"
+    "*.md"
   ],
   "scripts": {
     "test": "jest",
