@@ -18,9 +18,9 @@
   "bin": "./bin/vue-build-helper.js",
   "entry": "./src/build-helper-cli.js",
   "main": "./src/build-helper-cli.js",
-  "module": "./dist/build-helper-cli.es.js",
-  "browser": "./dist/build-helper-cli.min.js",
-  "unpkg": "./dist/build-helper-cli.min.js",
+  "module": "./dist/build-helper.es.js",
+  "browser": "./dist/build-helper.min.js",
+  "unpkg": "./dist/build-helper.min.js",
   "files": [
     "LICENSE.md",
     "README.md",
@@ -44,10 +44,9 @@
     "commitlint:last": "commitlint --edit",
     "git:first": "git rev-list HEAD | tail -n 1",
     "git:last": "git rev-list HEAD | head -n 1",
-    "gendocs": "node ./node_modules/jsdoc/jsdoc.js -r -c jsdoc.config.json -d ./docs",
-    "build": "bili --format cjs --outDir dist name=vue-build-helper-cli --input src/vue-build-helper-cli.js",
-    "release": "nodenv --env ./.env.local --exec release-it",
-    "cli": "node ./bin/vue-build-helper.js"
+    "gendocs": "jsdoc -r -c jsdoc.config.json -d ./docs",
+    "build": "rm -rf dist && bili --config bili.config.json",
+    "release": "nodenv --env ./.env.local --exec release-it --verbose"
   },
   "engines": {
     "node": ">=6"
