@@ -1,6 +1,15 @@
 ## [0.1.4](https://github.com/nidkil/vue-build-helper/compare/v0.1.3...v0.1.4) (2018-12-12)
 
 
+### Bug Fixes
+
+* untracked files ([4c6a9db](https://github.com/nidkil/vue-build-helper/commit/4c6a9db))
+
+
+
+## [0.1.4](https://github.com/nidkil/vue-build-helper/compare/v0.1.3...v0.1.4) (2018-12-12)
+
+
 
 ## [0.1.3](https://github.com/nidkil/vue-build-helper/compare/v0.1.2...v0.1.3) (2018-12-12)
 
