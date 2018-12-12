@@ -59,7 +59,7 @@ The following entry will be added to the `devDependencies` section in the `packa
 ```json
 {
   "devDependencies": {
-    "vue-build-helper": "^0.0.0"
+    "vue-build-helper": "^0.1.3"
   }
 }
 ```

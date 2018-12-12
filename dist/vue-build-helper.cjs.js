@@ -1,5 +1,5 @@
 /*!
- * vue-build-helper v0.1.2
+ * vue-build-helper v0.1.3
  * (c) 2018-present nidkil <info@nidkil.com> (http://nidkil.com/)
  * Released under the MIT License.
  */
@@ -137,7 +137,7 @@ var fsHelpers = {
 };
 
 var name = "vue-build-helper";
-var version = "0.1.2";
+var version = "0.1.3";
 var description = "Streamline the Vue CLI 3 build process";
 var author = "nidkil <info@nidkil.com> (http://nidkil.com/)";
 var license = "MIT";
@@ -182,6 +182,8 @@ var scripts = {
 	"git:first": "git rev-list HEAD | tail -n 1",
 	"git:last": "git rev-list HEAD | head -n 1",
 	gendocs: "jsdoc -r -c jsdoc.config.json -d ./docs",
+	"upd-version": "use-pkg-version",
+	prebuild: "use-pkg-version update README.md",
 	build: "rm -rf dist && bili --config bili.config.json",
 	release: "nodenv --env ./.env.local --exec release-it --verbose"
 };
@@ -216,7 +218,8 @@ var devDependencies = {
 	jest: "^23.6.0",
 	jsdoc: "^3.5.5",
 	prettier: "^1.15.3",
-	"release-it": "^8.4.2"
+	"release-it": "^8.4.2",
+	"use-pkg-version": "^0.1.5"
 };
 var config = {
 	commitizen: {
