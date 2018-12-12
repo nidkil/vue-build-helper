@@ -175,7 +175,7 @@ We welcome pull requests! What follows is the simplified version of the contribu
 
 ## Brag about it
 
-Do you find this package useful? Then please brag about it to the world by Twitter, email, blog, Discord, Slack, forums, etc. etc.
+Do you find this package useful? Then please brag about it to the world by Twitter, email, blog, Discord, Slack, forums, etc. etc. Thx!
 
 ## Author
 
