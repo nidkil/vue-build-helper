@@ -135,11 +135,11 @@ Example setting the destination build directory to `build`.
 
 ## Other options
 
-- **--help** - Using `npm run build-helper -- --help` will list the available commands.
+- **--help**: Using `npm run build-helper -- --help` will list the available commands.
 
-- **\<command\> --help** - Using `npm run build-helper -- <command> --help` will display information about the specified command and its options.
+- **\<command\> --help**: Using `npm run build-helper -- <command> --help` will display information about the specified command and its options.
 
-- **info** - Using `npm run build-helper -- info` will display information about your operating system and other environment information that is useful if you need to submit an issue.
+- **info**: Using `npm run build-helper -- info` will display information about your operating system and other environment information that is useful if you need to submit an issue.
 
 ## Roadmap
 
