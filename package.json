@@ -45,7 +45,6 @@
     "git:first": "git rev-list HEAD | tail -n 1",
     "git:last": "git rev-list HEAD | head -n 1",
     "gendocs": "jsdoc -r -c jsdoc.config.json -d ./docs",
-    "prebuild": "use-pkg-version update README.md",
     "build": "rm -rf dist && bili --config bili.config.json",
     "release": "nodenv --env ./.env.local --exec release-it --verbose"
   },
@@ -80,8 +79,7 @@
     "jest": "^23.6.0",
     "jsdoc": "^3.5.5",
     "prettier": "^1.15.3",
-    "release-it": "^8.4.2",
-    "use-pkg-version": "^0.1.4"
+    "release-it": "^8.4.2"
   },
   "config": {
     "commitizen": {
