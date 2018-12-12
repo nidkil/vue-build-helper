@@ -1,3 +1,8 @@
+/*!
+ * vue-build-helper v0.1.1
+ * (c) 2018-present nidkil <info@nidkil.com> (http://nidkil.com/)
+ * Released under the MIT License.
+ */
 'use strict';
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
@@ -22,7 +27,7 @@ function getLineFromFile(filePath, lineNumber) {
     throw new Error('File does not exists: ' + filePath);
   }
 
-  var data = fs.readFileSync(filePath).toString().split('\n');
+  const data = fs.readFileSync(filePath).toString().split('\n');
 
   if (lineNumber <= data.length) {
     return data[lineNumber];
@@ -31,17 +36,14 @@ function getLineFromFile(filePath, lineNumber) {
   return '';
 }
 
-function addLineToFile(filePath, line) {
-  var lineNumber = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var emptyFile = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-
+function addLineToFile(filePath, line, lineNumber = 0, emptyFile = false) {
   if (!fileExists(filePath)) {
     throw new Error('File does not exists: ' + filePath);
   }
 
-  var data = emptyFile ? [] : fs.readFileSync(filePath).toString().split('\n');
+  const data = emptyFile ? [] : fs.readFileSync(filePath).toString().split('\n');
   data.splice(lineNumber, 0, line);
-  var content = data.join('\n');
+  const content = data.join('\n');
 
   try {
     fs.writeFileSync(filePath, content);
@@ -57,7 +59,7 @@ function createEmptyFile(filePath) {
     throw new Error('File exists');
   }
 
-  var fh = null;
+  let fh = null;
 
   try {
     fh = fs.openSync(filePath, 'w');
@@ -110,7 +112,7 @@ function fileExists(filePath) {
 function rmdirRecursive(dirPath) {
   if (fs.existsSync(dirPath)) {
     fs.readdirSync(dirPath).forEach(function (entry) {
-      var curPath = path.join(dirPath, entry);
+      const curPath = path.join(dirPath, entry);
 
       if (fs.lstatSync(curPath).isDirectory()) {
         rmdirRecursive(curPath);
@@ -123,19 +125,19 @@ function rmdirRecursive(dirPath) {
 }
 
 var fsHelpers = {
-  addLineToFile: addLineToFile,
-  createDirectory: createDirectory,
-  createEmptyFile: createEmptyFile,
-  deleteDirectory: deleteDirectory,
-  deleteFile: deleteFile,
-  directoryExists: directoryExists,
-  fileExists: fileExists,
-  getLineFromFile: getLineFromFile,
-  rmdirRecursive: rmdirRecursive
+  addLineToFile,
+  createDirectory,
+  createEmptyFile,
+  deleteDirectory,
+  deleteFile,
+  directoryExists,
+  fileExists,
+  getLineFromFile,
+  rmdirRecursive
 };
 
 var name = "vue-build-helper";
-var version = "0.1.0";
+var version = "0.1.1";
 var description = "Streamline the Vue CLI 3 build process";
 var author = "nidkil <info@nidkil.com> (http://nidkil.com/)";
 var license = "MIT";
@@ -153,9 +155,9 @@ var bugs = "https://github.com/nidkil/vue-build-helper/issues";
 var bin = "./bin/vue-build-helper.js";
 var entry = "./src/build-helper-cli.js";
 var main = "./src/build-helper-cli.js";
-var module$1 = "./dist/build-helper-cli.es.js";
-var browser = "./dist/build-helper-cli.min.js";
-var unpkg = "./dist/build-helper-cli.min.js";
+var module$1 = "./dist/build-helper.es.js";
+var browser = "./dist/build-helper.min.js";
+var unpkg = "./dist/build-helper.min.js";
 var files = [
 	"LICENSE.md",
 	"README.md",
@@ -179,10 +181,9 @@ var scripts = {
 	"commitlint:last": "commitlint --edit",
 	"git:first": "git rev-list HEAD | tail -n 1",
 	"git:last": "git rev-list HEAD | head -n 1",
-	gendocs: "node ./node_modules/jsdoc/jsdoc.js -r -c jsdoc.config.json -d ./docs",
-	build: "bili --format cjs --outDir dist name=vue-build-helper-cli --input src/vue-build-helper-cli.js",
-	release: "nodenv --env ./.env.local --exec release-it",
-	cli: "node ./bin/vue-build-helper.js"
+	gendocs: "jsdoc -r -c jsdoc.config.json -d ./docs",
+	build: "rm -rf dist && bili --config bili.config.json",
+	release: "nodenv --env ./.env.local --exec release-it --verbose"
 };
 var engines = {
 	node: ">=6"
@@ -273,10 +274,10 @@ var _package$1 = /*#__PURE__*/Object.freeze({
 
 var require$$0 = getCjsExportFromNamespace(_package$1);
 
-var directoryExists$1 = fsHelpers.directoryExists,
-    fileExists$1 = fsHelpers.fileExists;
+const directoryExists$1 = fsHelpers.directoryExists,
+      fileExists$1 = fsHelpers.fileExists;
 
-var defaults = {
+const defaults = {
   name: 'build-helper-cli',
   buildDestDir: 'dist',
   filterOn: 'common.js',
@@ -284,23 +285,21 @@ var defaults = {
 };
 
 function createCmdModule(cmd) {
-  return "./commands/".concat(cmd._name, ".cmd");
+  return `./commands/${cmd._name}.cmd`;
 }
 
 function camelcase(str) {
-  return str.replace(/-(\w)/g, function (_, c) {
-    return c ? c.toUpperCase() : '';
-  });
+  return str.replace(/-(\w)/g, (_, c) => c ? c.toUpperCase() : '');
 } // Commander passes the Command object itself as options, extract only actual options into a fresh object and
 // camelcase them and remove leading dashes
 
 
 function cleanArgs(cmd) {
-  var args = {
+  const args = {
     cmd: cmd._name
   };
-  cmd.options.forEach(function (o) {
-    var key = camelcase(o.long.replace(/^--/, '')); // If an option is not present and Command has a method with the same name it should not be copied
+  cmd.options.forEach(o => {
+    const key = camelcase(o.long.replace(/^--/, '')); // If an option is not present and Command has a method with the same name it should not be copied
 
     if (typeof cmd[key] !== 'function' && typeof cmd[key] !== 'undefined') {
       args[key] = cmd[key];
@@ -312,12 +311,12 @@ function cleanArgs(cmd) {
 
 
 function enrichArgs(args) {
-  var dest = args && args.dest ? args.dest : defaults.buildDestDir;
-  var buildDestPath = slash(path.join(process.cwd(), dest));
+  const dest = args && args.dest ? args.dest : defaults.buildDestDir;
+  const buildDestPath = slash(path.join(process.cwd(), dest));
   args.buildDestPath = buildDestPath;
 
   if (args && args.file) {
-    var filePath = slash(path.join(args.buildDestPath, args.file));
+    const filePath = slash(path.join(args.buildDestPath, args.file));
     args.filePath = filePath;
   }
 
@@ -327,7 +326,7 @@ function enrichArgs(args) {
 
 function checkArgs(args) {
   if (args) {
-    var verbose = args.verbose || false;
+    const verbose = args.verbose || false;
 
     if (args.buildDestPath && !directoryExists$1(args.buildDestPath)) {
       verbose && console.log(args.cmd, JSON.stringify(args, null, '\t'));
@@ -345,21 +344,23 @@ function checkArgs(args) {
   return args;
 }
 
-var vueBuildHelperCli = function () {
+var vueBuildHelperCli = () => {
   commander.version(require$$0.version).usage('<command> [options]');
-  commander.command('all').description('add eslint disable to file(s), delete demo.html file(s) and create file with exports').option('-d, --dest [relative path]', "process build destination directory, default '".concat(defaults.buildDestDir, "'"), defaults.buildDestDir).option('-f, --file [relative to dest path]', "process file relative to build destination directory, if not specified then all files ending\n      with '".concat(defaults.filterOn, "' will be processed")).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
+  commander.command('all').description('add eslint disable to file(s), delete demo.html file(s) and create file with exports').option('-d, --dest [relative path]', `process build destination directory, default '${defaults.buildDestDir}'`, defaults.buildDestDir).option('-f, --file [relative to dest path]', `process file relative to build destination directory, if not specified then all files ending
+      with '${defaults.filterOn}' will be processed`).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
     commonjsRequire(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))));
   });
-  commander.command('add-eslint-disable').description('add eslint disable to file(s)').option('-d, --dest [relative path]', "process build destination directory, default '".concat(defaults.buildDestDir, "'"), defaults.buildDestDir).option('-f, --file [relative to dest path]', "process file relative to build destination directory, if not specified then all files ending\n      with '".concat(defaults.filterOn, "' will be processed")).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
+  commander.command('add-eslint-disable').description('add eslint disable to file(s)').option('-d, --dest [relative path]', `process build destination directory, default '${defaults.buildDestDir}'`, defaults.buildDestDir).option('-f, --file [relative to dest path]', `process file relative to build destination directory, if not specified then all files ending
+      with '${defaults.filterOn}' will be processed`).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
     commonjsRequire(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))));
   });
-  commander.command('delete-demo-html').description('delete demo.html file(s)').option('-d, --dest [relative path]', "process build destination directory, default '".concat(defaults.buildDestDir, "'"), defaults.buildDestDir).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
+  commander.command('delete-demo-html').description('delete demo.html file(s)').option('-d, --dest [relative path]', `process build destination directory, default '${defaults.buildDestDir}'`, defaults.buildDestDir).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
     commonjsRequire(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))));
   });
-  commander.command('create-exports').description('create file with exports (default and named exports will be created if one component is found, otherwise only named exports will be created)').option('-d, --dest [relative path]', "process build destination directory, default '".concat(defaults.buildDestDir, "'"), defaults.buildDestDir).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
+  commander.command('create-exports').description('create file with exports (default and named exports will be created if one component is found, otherwise only named exports will be created)').option('-d, --dest [relative path]', `process build destination directory, default '${defaults.buildDestDir}'`, defaults.buildDestDir).option('-v, --verbose', 'show processing information, default false').option('-q, --quiet', 'report errors only, default false').action(function (cmd, options) {
     commonjsRequire(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))));
   });
-  commander.command('info').description('print debugging information about your environment').action(function (cmd) {
+  commander.command('info').description('print debugging information about your environment').action(cmd => {
     console.log(chalk.bold('\nEnvironment Info:'));
 
     envinfo.run({
@@ -375,22 +376,18 @@ var vueBuildHelperCli = function () {
     }).then(console.log);
   }); // Output help information on unknown commands
 
-  commander.arguments('<command>').action(function (cmd) {
+  commander.arguments('<command>').action(cmd => {
     commander.outputHelp();
-    console.log('  ' + chalk.red("Unknown command ".concat(chalk.yellow(cmd), ".")));
+    console.log('  ' + chalk.red(`Unknown command ${chalk.yellow(cmd)}.`));
     console.log();
   }); // Add some useful info to help
 
   commander.on('--help', function () {
     console.log();
-    console.log("  Run ".concat(chalk.cyan("".concat(defaults.name, " <command> --help")), " for detailed usage of given command."));
+    console.log(`  Run ${chalk.cyan(`${defaults.name} <command> --help`)} for detailed usage of given command.`);
     console.log();
   });
-  commander.commands.forEach(function (c) {
-    return c.on('--help', function () {
-      return console.log();
-    });
-  });
+  commander.commands.forEach(c => c.on('--help', () => console.log()));
   commander.parse(process.argv);
 
   if (!process.argv.slice(2).length) {
