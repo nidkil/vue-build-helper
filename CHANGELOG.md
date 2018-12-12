@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/nidkil/vue-build-helper/compare/v0.1.1...v0.1.2) (2018-12-12)
+
+
+### Bug Fixes
+
+* **release-it:** added missing build files ([f298f43](https://github.com/nidkil/vue-build-helper/commit/f298f43))
+
+
+
 ## [0.1.1](https://github.com/nidkil/vue-build-helper/compare/v0.1.0...v0.1.1) (2018-12-12)
 
 

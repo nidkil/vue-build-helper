@@ -1,5 +1,5 @@
 /*!
- * vue-build-helper v0.1.1
+ * vue-build-helper v0.1.2
  * (c) 2018-present nidkil <info@nidkil.com> (http://nidkil.com/)
  * Released under the MIT License.
  */
@@ -3273,7 +3273,7 @@
 	};
 
 	var name = "vue-build-helper";
-	var version = "0.1.1";
+	var version = "0.1.2";
 	var description = "Streamline the Vue CLI 3 build process";
 	var author = "nidkil <info@nidkil.com> (http://nidkil.com/)";
 	var license = "MIT";
