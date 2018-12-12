@@ -24,6 +24,22 @@ The Vue CLI 3 is an awesome tool. The build process is not completely smooth whe
 
 These functionalities can be run all together or separately.
 
+<!-- toc -->
+
+- [Global](#global)
+- [Local](#local)
+- [Usage](#usage)
+- [Minimum configuration](#minimum-configuration)
+- [Additional configuration](#additional-configuration)
+- [Running features individually](#running-features-individually)
+- [Specifying alternative build directory](#specifying-alternative-build-directory)
+- [Other options](#other-options)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+- [Author](#author)
+
+<!-- tocstop -->
+
 ## Installation
 
 ### Global
