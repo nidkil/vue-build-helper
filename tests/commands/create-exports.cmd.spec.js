@@ -2,9 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const createExports = require('@/commands/create-exports.cmd')
 const generateDirectoryTree = require('../helpers/generate-directory-tree')
-const { createDirectory, rmdirRecursive } = require('@/common/fs-helpers')
+const { createDirectory, directoryExists, rmdirRecursive } = require('@/common/fs-helpers')
 
 const structure = require('../fixtures/add-eslint-disable-dir-tree.json')
+const defaultDist = path.join(__dirname, 'dist')
+let defaultDistCreated = false
 const testBasePath = path.join(__dirname, 'tmp')
 const expectedContentsNamedOnly = `import Component1 from './component1/component1.common'
 import Component2 from './component2/component2.common'`
@@ -23,6 +25,10 @@ describe('Create exports', () => {
   beforeAll(() => {
     rmdirRecursive(testBasePath)
     createDirectory(testBasePath)
+    if (!directoryExists(defaultDist)) {
+      createDirectory(defaultDist)
+      defaultDistCreated = true
+    }
   })
 
   beforeEach(() => {
@@ -35,6 +41,7 @@ describe('Create exports', () => {
 
   afterAll(() => {
     rmdirRecursive(testBasePath)
+    if (defaultDistCreated) rmdirRecursive(defaultDist)
   })
 
   test('Build destination not specified', () => {
