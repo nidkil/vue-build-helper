@@ -5,6 +5,7 @@
 <p align="center" style="font-size: 0.5em">Streamline the Vue CLI 3 build process</p>
 
 [![Build status](https://travis-ci.com/nidkil/vue-build-helper.svg?branch=master)](https://travis-ci.com/nidkil/vue-build-helper)
+[![Greenkeeper badge](https://badges.greenkeeper.io/nidkil/vue-build-helper.svg)](https://greenkeeper.io/)
 [![NPM version](https://img.shields.io/npm/v/vue-build-helper.svg)](https://www.npmjs.com/package/vue-build-helper)
 [![Vue 2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 [![Vue CLI 3](https://img.shields.io/badge/vue%20cli-3-brightgreen.svg)](https://cli.vuejs.org/)
