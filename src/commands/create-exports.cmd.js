@@ -1,7 +1,6 @@
 const path = require('path')
 const FileHound = require('filehound')
-const upperFirst = require('lodash.upperFirst')
-const camelCase = require('lodash.camelCase')
+const { upperCamelCase } = require('@/common/helpers')
 const { deleteFile } = require('../common/fs-helpers')
 
 const defaultDestPath = path.join(process.cwd(), 'dist')
@@ -80,7 +79,7 @@ function stripExt (filePath) {
 function getModuleParts (filePath, buildDistPath) {
   filePath = correctPathSeparator(filePath)
   // Convert kebab case to capitalized words without spaces, i.e. hello-world to HelloWorld
-  const moduleName = upperFirst(camelCase(stripFilter(path.basename(filePath))))
+  const moduleName = upperCamelCase(stripFilter(path.basename(filePath)))
   const modulePath = stripExt(stripBuildDest(filePath, buildDistPath))
   return { moduleName, modulePath }
 }
