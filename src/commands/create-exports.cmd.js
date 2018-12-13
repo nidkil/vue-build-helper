@@ -1,7 +1,7 @@
 const path = require('path')
 const FileHound = require('filehound')
 const { upperCamelCase } = require('@/common/helpers')
-const { deleteFile } = require('../common/fs-helpers')
+const { deleteFile, directoryExists } = require('../common/fs-helpers')
 
 const defaultDestPath = path.join(process.cwd(), 'dist')
 
@@ -171,6 +171,9 @@ function createExports (options) {
   verbose && console.log('create-exports', JSON.stringify(options, null, '\t'))
   // Use sane default (dist) if not specified
   options.buildDestPath = options.buildDestPath || defaultDestPath
+  if (!directoryExists(options.buildDestPath)) {
+    throw Error('Default build directory does not exist: ' + options.buildDestPath)
+  }
   const exportsFilePath = path.join(options.buildDestPath, 'index.js')
   verbose && console.log('Exports file: ' + exportsFilePath)
   processFiles(getFiles(options.buildDestPath), exportsFilePath, options.buildDestPath)

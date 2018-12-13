@@ -41,7 +41,7 @@ describe('Create exports', () => {
 
   afterAll(() => {
     rmdirRecursive(testBasePath)
-    if (defaultDistCreated) rmdirRecursive(defaultDist)
+    if (directoryExists(defaultDist)) rmdirRecursive(defaultDist)
   })
 
   test('Build destination not specified', () => {
@@ -83,5 +83,17 @@ describe('Create exports', () => {
     expect(t).not.toThrow()
     const contents = fs.readFileSync(exportsFile)
     expect(contents.toString()).toBe(expectedContentsNamedAndDefault)
+  })
+
+  test('Default build directory does not exist', () => {
+    if (directoryExists(defaultDist)) rmdirRecursive(defaultDist)
+    const options = {
+      verbose,
+      quiet
+    }
+    const t = () => {
+      createExports(options)
+    }
+    expect(t).not.toThrow('Default build directory does not exist: .*')
   })
 })
