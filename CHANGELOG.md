@@ -1,3 +1,15 @@
+## [0.1.5](https://github.com/nidkil/vue-build-helper/compare/v0.1.4...v0.1.5) (2018-12-13)
+
+
+### Bug Fixes
+
+* create dist directory ([08d4d84](https://github.com/nidkil/vue-build-helper/commit/08d4d84))
+* incorrect parent path dist dir ([f8590e5](https://github.com/nidkil/vue-build-helper/commit/f8590e5))
+* removed lodash dependencies ([43ef370](https://github.com/nidkil/vue-build-helper/commit/43ef370))
+* **create-exports:** added check if default build dir exists ([0c0c46f](https://github.com/nidkil/vue-build-helper/commit/0c0c46f))
+
+
+
 ## [0.1.4](https://github.com/nidkil/vue-build-helper/compare/v0.1.3...v0.1.4) (2018-12-12)
 
 
