@@ -5,7 +5,7 @@ const generateDirectoryTree = require('../helpers/generate-directory-tree')
 const { createDirectory, directoryExists, rmdirRecursive } = require('@/common/fs-helpers')
 
 const structure = require('../fixtures/add-eslint-disable-dir-tree.json')
-const defaultDist = path.join(__dirname, 'dist')
+const defaultDist = path.join(process.cwd(), 'dist')
 let defaultDistCreated = false
 const testBasePath = path.join(__dirname, 'tmp')
 const expectedContentsNamedOnly = `import Component1 from './component1/component1.common'
