@@ -27,8 +27,6 @@ These functionalities can be run all together or separately.
 <details>
  <summary><strong>Table of Contents</strong> (click to expand)</summary>
 
-<summary><strong>Table of Contents</strong> (click to expand)</summary>
-
 <!-- toc -->
 
 - [Installation](#installation)
