@@ -1,6 +1,6 @@
 {
   "name": "vue-build-helper",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Streamline the Vue CLI 3 build process",
   "author": "nidkil <info@nidkil.com> (http://nidkil.com/)",
   "license": "MIT",
