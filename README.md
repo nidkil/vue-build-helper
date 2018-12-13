@@ -40,7 +40,7 @@ These functionalities can be run all together or separately.
 
 <!-- tocstop -->
 
-</git sdetails>
+</details>
 
 ## Installation
 
