@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/nidkil/vue-build-helper/master/images/vue-build-helper-robot.gif" alt="vue-build-helper robot" width="200"/>
 </p>
-<p align="center" style="font-size: 1.5em"><b>vue-build-helper</b></p>
+<p align="center" style="font-size: 1.5em"><b></b></p>
 <p align="center" style="font-size: 0.5em">Streamline the Vue CLI 3 build process</p>
 
 [![Build status](https://travis-ci.com/nidkil/vue-build-helper.svg?branch=master)](https://travis-ci.com/nidkil/vue-build-helper)
@@ -28,8 +28,11 @@ These functionalities can be run all together or separately.
 <details>
  <summary><strong>Table of Contents</strong> (click to expand)</summary>
 
+<summary><strong>Table of Contents</strong> (click to expand)</summary>
+
 <!-- toc -->
 
+- [Installation](#installation)
 - [Usage](#usage)
 - [Additional configuration](#additional-configuration)
 - [Other options](#other-options)
@@ -40,9 +43,9 @@ These functionalities can be run all together or separately.
 
 <!-- tocstop -->
 
-</details>
+</git sdetails>
 
-# Installation
+## Installation
 
 ### Global
 
