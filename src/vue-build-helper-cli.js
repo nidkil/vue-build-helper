@@ -8,13 +8,7 @@ const defaults = {
   name: 'build-helper-cli',
   buildDestDir: 'dist',
   filterOn: 'common.js',
-  commands: [
-    'all',
-    'eslint-disable',
-    'delete-demo-html',
-    'create-exports',
-    'info'
-  ]
+  commands: ['all', 'eslint-disable', 'delete-demo-html', 'create-exports', 'info']
 }
 
 function createCmdModule(cmd) {
@@ -60,11 +54,7 @@ function checkArgs(args) {
     const verbose = args.verbose || false
     if (args.buildDestPath && !directoryExists(args.buildDestPath)) {
       verbose && console.log(args.cmd, JSON.stringify(args, null, '\t'))
-      console.log(
-        chalk.red(
-          'Build destination directory does not exist: ' + args.buildDestPath
-        )
-      )
+      console.log(chalk.red('Build destination directory does not exist: ' + args.buildDestPath))
       process.exit(-1)
     }
     if (args.filePath && !fileExists(args.filePath)) {
@@ -77,9 +67,7 @@ function checkArgs(args) {
 }
 
 module.exports = () => {
-  program
-    .version(require('../package.json').version)
-    .usage('<command> [options]')
+  program.version(require('../package.json').version).usage('<command> [options]')
 
   program
     .command('all')
