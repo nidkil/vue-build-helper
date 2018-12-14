@@ -1,10 +1,11 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/nidkil/vue-build-helper/master/images/vue-build-helper-robot.gif" alt="vue-build-helper robot" width="200"/>
 </p>
-<p align="center" style="font-size: 1.5em"><b></b></p>
+<p align="center" style="font-size: 1.5em"><b>vue-build-helper</b></p>
 <p align="center" style="font-size: 0.5em">Streamline the Vue CLI 3 build process</p>
 
 [![Build status](https://travis-ci.com/nidkil/vue-build-helper.svg?branch=master)](https://travis-ci.com/nidkil/vue-build-helper)
+[![Coverage Status](https://coveralls.io/repos/github/nidkil/vue-build-helper/badge.svg)](https://coveralls.io/github/nidkil/vue-build-helper)
 [![Greenkeeper badge](https://badges.greenkeeper.io/nidkil/vue-build-helper.svg)](https://greenkeeper.io/)
 [![NPM version](https://img.shields.io/npm/v/vue-build-helper.svg)](https://www.npmjs.com/package/vue-build-helper)
 [![Vue 2](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
@@ -24,8 +25,8 @@ The Vue CLI 3 is an awesome tool. The build process is not completely smooth whe
 
 These functionalities can be run all together or separately.
 
-<details>
- <summary><strong>Table of Contents</strong> (click to expand)</summary>
+<a name="toc">
+  <strong>Table of Contents</strong>
 
 <!-- toc -->
 
@@ -40,7 +41,7 @@ These functionalities can be run all together or separately.
 
 <!-- tocstop -->
 
-</details>
+</a>
 
 ## Installation
 
@@ -94,6 +95,8 @@ Add the following entry to the `scripts` section in the `package.json` file:
 
 Now you can run `npm run build-helper` from the command line. You can pass it arguments using double dashes (--), e.g. `npm run build-helper -- info`.
 
+[Go to Table of Contents](#toc)
+
 ## Usage
 
 ### Minimum configuration
@@ -120,6 +123,8 @@ Or:
 ```bash
 yarn postbuild
 ```
+
+[Go to Table of Contents](#toc)
 
 ## Additional configuration
 
@@ -151,6 +156,8 @@ Example setting the destination build directory to `build`.
 }
 ```
 
+[Go to Table of Contents](#toc)
+
 ## Other options
 
 - **--help**: Using `npm run build-helper -- --help` will list the available commands.
@@ -159,9 +166,13 @@ Example setting the destination build directory to `build`.
 
 - **info**: Using `npm run build-helper -- info` will display information about your operating system and other environment information that is useful if you need to submit an issue.
 
+[Go to Table of Contents](#toc)
+
 ## Roadmap
 
 Currently there is nothing on the roadmap. Suggestions? Please submit an issue.
+
+[Go to Table of Contents](#toc)
 
 ## Contributing
 
@@ -174,11 +185,15 @@ We welcome pull requests! What follows is the simplified version of the contribu
 5. Push to the branch: `git push origin my-new-feature`
 6. Submit a pull request :-)
 
+[Go to Table of Contents](#toc)
+
 ## Support & brag about us
 
 If you like this project, please support us by starring ⭐ [this](https://github.com/nidkil/setup-os-repo) repository. Thx!
 
 Please let the world know about us! Brag about us using Twitter, email, blog, Discord, Slack, forums, etc. etc. Thx!
+
+[Go to Table of Contents](#toc)
 
 ## Author
 
