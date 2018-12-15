@@ -25,7 +25,8 @@
     "bin",
     "dist",
     "src",
-    "*.md"
+    "LICENSE.md",
+    "README.md"
   ],
   "scripts": {
     "test": "jest",
@@ -79,6 +80,7 @@
     "markdown-toc": "^1.2.0",
     "prettier": "^1.15.3",
     "release-it": "^9.1.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
     "use-pkg-version": "^0.1.7"
   },
   "config": {

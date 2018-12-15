@@ -1,6 +1,6 @@
 const path = require('path')
 const FileHound = require('filehound')
-const { upperCamelCase } = require('@/common/case-helpers')
+const { upperCamelCase } = require('../common/case-helpers')
 const { deleteFile, directoryExists } = require('../common/fs-helpers')
 
 const defaultDestPath = path.join(process.cwd(), 'dist')
