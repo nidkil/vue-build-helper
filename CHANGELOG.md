@@ -1,6 +1,16 @@
 ## [0.1.9](https://github.com/nidkil/vue-build-helper/compare/v0.1.8...v0.1.9) (2018-12-15)
 
 
+### Bug Fixes
+
+* **bin entry:** loading dist then src ([ce2f165](https://github.com/nidkil/vue-build-helper/commit/ce2f165))
+* **create-exports.cmd:** deleting dist directory ([2c6dc0e](https://github.com/nidkil/vue-build-helper/commit/2c6dc0e))
+
+
+
+## [0.1.9](https://github.com/nidkil/vue-build-helper/compare/v0.1.8...v0.1.9) (2018-12-15)
+
+
 
 ## [0.1.8](https://github.com/nidkil/vue-build-helper/compare/v0.1.7...v0.1.8) (2018-12-15)
 
