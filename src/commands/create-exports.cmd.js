@@ -172,7 +172,7 @@ function createExports (options) {
   // Use sane default (dist) if not specified
   options.buildDestPath = options.buildDestPath || defaultDestPath
   if (!directoryExists(options.buildDestPath)) {
-    throw Error('Default build directory does not exist: ' + options.buildDestPath)
+    throw Error('Build directory does not exist: ' + options.buildDestPath)
   }
   const exportsFilePath = path.join(options.buildDestPath, 'index.js')
   verbose && console.log('Exports file: ' + exportsFilePath)
