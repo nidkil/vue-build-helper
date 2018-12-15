@@ -1,4 +1,4 @@
-const { camelCase, lowerCamelCase, pascalCamelCase, upperCamelCase } = require('@/common/helpers')
+const { camelCase, lowerCamelCase, pascalCamelCase, upperCamelCase } = require('@/common/case-helpers')
 
 describe('helpers', () => {
   describe('lowerCamelCase AKA camelcase', () => {
