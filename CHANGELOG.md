@@ -1,3 +1,13 @@
+## [0.1.7](https://github.com/nidkil/vue-build-helper/compare/v0.1.6...v0.1.7) (2018-12-15)
+
+
+### Bug Fixes
+
+* bin script ([578d748](https://github.com/nidkil/vue-build-helper/commit/578d748))
+* renamed helper ([8b6920a](https://github.com/nidkil/vue-build-helper/commit/8b6920a))
+
+
+
 ## [0.1.6](https://github.com/nidkil/vue-build-helper/compare/v0.1.5...v0.1.6) (2018-12-13)
 
 
