@@ -1,5 +1,5 @@
 module.exports = {
-  input: './src/vue-build-helper.js',
+  input: './src/vue-build-helper-cli.js',
   outDir: './dist',
   format: ['es', 'umd', 'umd-min', 'cjs'],
   moduleName: 'vue-build-helper',
