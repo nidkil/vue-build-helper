@@ -1,6 +1,6 @@
 {
   "name": "vue-build-helper",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Streamline the Vue CLI 3 build process",
   "author": "nidkil <info@nidkil.com> (http://nidkil.com/)",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "readme:upd-version": "use-pkg-version update README.md",
     "prebuild": "npm run readme:toc && npm run readme:upd-version",
     "build": "rm -rf dist && bili --config bili.config.js",
-    "release": "nodenv --env ./.env.local --exec release-it --disable-metrics --verbose"
+    "release": "nodenv --env ./.env.local --exec release-it --disable-metrics --verbose --dry-run"
   },
   "engines": {
     "node": ">=6"
