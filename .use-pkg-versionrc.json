@@ -1,4 +1,4 @@
 {
-  "search-for": "\"\\^[0-9]*?\\.[0-9]*?\\.[0-9]*?\"$",
-  "replace-with": "\"^{{version}}\""
+  "search-for": "\"vue-build-helper\": \"\\^[0-9]*?\\.[0-9]*?\\.[0-9]*?\"",
+  "replace-with": "\"vue-build-helper\": ^{{version}}"
 }
