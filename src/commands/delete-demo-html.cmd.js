@@ -2,6 +2,8 @@ const { deleteFile } = require('../common/fs-helpers')
 const FileHound = require('filehound')
 
 const filterOn = 'demo.html'
+// Enable or disable debug output
+let debug = false
 // Enable or disable verbose output
 let verbose = false
 // Enable or disable quiet mode
@@ -23,10 +25,10 @@ function customFilter (file) {
  */
 function processFiles (files) {
   if (files.length === 0) {
-    quiet && console.log('No files to process')
+    !quiet && console.log('No files to delete')
   } else {
     files.forEach(filePath => {
-      quiet && console.log('Deleting file: ' + filePath)
+      !quiet && console.log('Deleting file: ' + filePath)
       deleteFile(filePath)
     })
   }
@@ -60,9 +62,10 @@ function getFiles (buildDestPath) {
  * @param {Object} options - See description above
  */
 function deleteDemoHtml (options) {
+  debug = options && options.debug ? options.debug : false
   verbose = options && options.verbose ? options.verbose : false
   quiet = options && options.quiet ? options.quiet : false
-  verbose && console.log('create-exports', JSON.stringify(options, null, '\t'))
+  debug && console.log('create-exports', JSON.stringify(options, null, '\t'))
   processFiles(getFiles(options.buildDestPath))
 }
 

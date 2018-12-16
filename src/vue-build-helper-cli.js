@@ -1,11 +1,14 @@
+const pkg = require('../package.json')
 const slash = require('slash')
 const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 const { directoryExists, fileExists } = require('./common/fs-helpers')
 
+let verbose = false
+let debug = false
+let quiet = false
 const defaults = {
-  name: 'build-helper-cli',
   buildDestDir: 'dist',
   filterOn: 'common.js',
   commands: ['all', 'eslint-disable', 'delete-demo-html', 'create-exports', 'info']
@@ -51,14 +54,13 @@ function enrichArgs(args) {
 // Lets check that directories and files exist, so that individual commands do not have to handle this themselves
 function checkArgs(args) {
   if (args) {
-    const verbose = args.verbose || false
     if (args.buildDestPath && !directoryExists(args.buildDestPath)) {
-      verbose && console.log(args.cmd, JSON.stringify(args, null, '\t'))
+      debug && console.log(args.cmd, JSON.stringify(args, null, '\t'))
       console.log(chalk.red('Build destination directory does not exist: ' + args.buildDestPath))
       process.exit(-1)
     }
     if (args.filePath && !fileExists(args.filePath)) {
-      verbose && console.log(args.cmd, JSON.stringify(args, null, '\t'))
+      debug && console.log(args.cmd, JSON.stringify(args, null, '\t'))
       console.log(chalk.red('File does not exist: ' + args.filePath))
       process.exit(-1)
     }
@@ -66,8 +68,38 @@ function checkArgs(args) {
   return args
 }
 
+function handleAction(options, args = null) {
+  verbose = options.verbose || false
+  debug = options.debug || false
+  quiet = options.quiet || false
+  !quiet && console.log(chalk.yellow(pkg.name + ' v' + pkg.version))
+  const cmd = require(createCmdModule(options))
+  cmd(checkArgs(enrichArgs(cleanArgs(options, args))))
+}
+
+function handleInfoAction() {
+  console.log(chalk.yellow(pkg.name + ' v' + pkg.version))
+  console.log(chalk.bold('\nEnvironment Info:'))
+  require('envinfo')
+    .run(
+      {
+        System: ['OS', 'CPU'],
+        Binaries: ['Node', 'Yarn', 'npm'],
+        Browsers: ['Chrome', 'Edge', 'Firefox', 'Safari'],
+        npmPackages: '/**/{*vue*,@vue/*/}',
+        npmGlobalPackages: ['@vue/cli']
+      },
+      {
+        showNotFound: true,
+        duplicates: true,
+        fullTree: true
+      }
+    )
+    .then(console.log)
+}
+
 module.exports = () => {
-  program.version(require('../package.json').version).usage('<command> [options]')
+  program.version(pkg.version).usage('<command> [options]')
 
   program
     .command('all')
@@ -86,8 +118,9 @@ module.exports = () => {
     )
     .option('-v, --verbose', 'show processing information, default false')
     .option('-q, --quiet', 'report errors only, default false')
-    .action(function(cmd, options) {
-      require(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))))
+    .option('-D, --debug', 'show debugging information, default false')
+    .action(function(options) {
+      handleAction(options)
     })
 
   program
@@ -105,8 +138,9 @@ module.exports = () => {
     )
     .option('-v, --verbose', 'show processing information, default false')
     .option('-q, --quiet', 'report errors only, default false')
-    .action(function(cmd, options) {
-      require(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))))
+    .option('-D, --debug', 'show debugging information, default false')
+    .action(function(options) {
+      handleAction(options)
     })
 
   program
@@ -119,8 +153,9 @@ module.exports = () => {
     )
     .option('-v, --verbose', 'show processing information, default false')
     .option('-q, --quiet', 'report errors only, default false')
-    .action(function(cmd, options) {
-      require(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))))
+    .option('-D, --debug', 'show debugging information, default false')
+    .action(function(options) {
+      handleAction(options)
     })
 
   program
@@ -135,51 +170,35 @@ module.exports = () => {
     )
     .option('-v, --verbose', 'show processing information, default false')
     .option('-q, --quiet', 'report errors only, default false')
-    .action(function(cmd, options) {
-      require(createCmdModule(cmd))(checkArgs(enrichArgs(cleanArgs(cmd))))
+    .option('-D, --debug', 'show debugging information, default false')
+    .action(function(options) {
+      handleAction(options)
     })
 
   program
     .command('info')
     .description('print debugging information about your environment')
     .action(cmd => {
-      console.log(chalk.bold('\nEnvironment Info:'))
-      require('envinfo')
-        .run(
-          {
-            System: ['OS', 'CPU'],
-            Binaries: ['Node', 'Yarn', 'npm'],
-            Browsers: ['Chrome', 'Edge', 'Firefox', 'Safari'],
-            npmPackages: '/**/{*vue*,@vue/*/}',
-            npmGlobalPackages: ['@vue/cli']
-          },
-          {
-            showNotFound: true,
-            duplicates: true,
-            fullTree: true
-          }
-        )
-        .then(console.log)
+      handleInfoAction(options)
     })
 
-  // Output help information on unknown commands
+  // Output help information if command is unknown
   program.arguments('<command>').action(cmd => {
     program.outputHelp()
     console.log('  ' + chalk.red(`Unknown command ${chalk.yellow(cmd)}.`))
     console.log()
   })
 
-  // Add some useful info to help
+  // Add additional information to the main help
   program.on('--help', function() {
     console.log()
     console.log(
-      `  Run ${chalk.cyan(
-        `${defaults.name} <command> --help`
-      )} for detailed usage of given command.`
+      `  Run ${chalk.cyan(`${pkg.name} <command> --help`)} for detailed usage of given command.`
     )
     console.log()
   })
 
+  // Placeholder to add additional help to the help of specific commands
   program.commands.forEach(c => c.on('--help', () => console.log()))
 
   program.parse(process.argv)

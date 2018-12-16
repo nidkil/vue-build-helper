@@ -18,8 +18,8 @@ const deleteDemoHtml = require('./delete-demo-html.cmd')
  * @param {Object} options - See description above
  */
 function all (options) {
-  const verbose = options && options.verbose ? options.verbose : false
-  verbose && console.log('all', JSON.stringify(options, null, '\t'))
+  const debug = options && options.debug ? options.debug : false
+  debug && console.log('all', JSON.stringify(options, null, '\t'))
   addEslintDisable(options)
   createExports(options)
   deleteDemoHtml(options)

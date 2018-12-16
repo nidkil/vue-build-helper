@@ -5,6 +5,8 @@ const FileHound = require('filehound')
 const eslintDisable = '/* eslint-disable */'
 // TODO move to shared module
 const filterOn = 'common.js'
+// Enable or disable debug output
+let debug = false
 // Enable or disable verbose output
 let verbose = false
 // Enable or disable quiet mode
@@ -88,9 +90,10 @@ function addEslintDisable (options) {
   if (!options.srcFilePath && !options.buildDestPath) {
     throw new Error('Source file or build destination must be specified')
   }
+  debug = options && options.debug ? options.debug : false
   verbose = options && options.verbose ? options.verbose : false
   quiet = options && options.quiet ? options.quiet : false
-  verbose && console.log('add-eslint-disable', JSON.stringify(options, null, '\t'))
+  debug && console.log('add-eslint-disable', JSON.stringify(options, null, '\t'))
   const files = getFiles(options.srcFilePath, options.buildDestPath)
   if (files.length === 0) {
     verbose && console.log('No files to process')

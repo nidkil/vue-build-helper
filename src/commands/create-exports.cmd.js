@@ -7,6 +7,8 @@ const defaultDestPath = path.join(process.cwd(), 'dist')
 
 // TODO move to shared module
 const filterOn = 'common.js'
+// Enable or disable debug output
+let debug = false
 // Enable or disable verbose output
 let verbose = false
 // Enable or disable quiet mode
@@ -166,18 +168,23 @@ function getFiles (buildDestPath) {
  * @param {Object} options - See description above
  */
 function createExports (options) {
+  debug = options && options.debug ? options.debug : false
   verbose = options && options.verbose ? options.verbose : false
   quiet = options && options.quiet ? options.quiet : false
-  verbose && console.log('create-exports', JSON.stringify(options, null, '\t'))
+  debug && console.log('create-exports', JSON.stringify(options, null, '\t'))
   // Use sane default (dist) if not specified
   options.buildDestPath = options.buildDestPath || defaultDestPath
   if (!directoryExists(options.buildDestPath)) {
     throw Error('Build directory does not exist: ' + options.buildDestPath)
   }
   const exportsFilePath = path.join(options.buildDestPath, 'index.js')
-  verbose && console.log('Exports file: ' + exportsFilePath)
-  processFiles(getFiles(options.buildDestPath), exportsFilePath, options.buildDestPath)
-    .then(() => verbose && console.log('Exports file created'))
+  debug && console.log('Exports file: ' + exportsFilePath)
+  const files = getFiles(options.buildDestPath)
+  processFiles(files, exportsFilePath, options.buildDestPath)
+    .then(() => {
+      if (verbose && files.length > 0) console.log('Export file created')
+      else console.log('No export file created')
+    })
 }
 
 module.exports = createExports
