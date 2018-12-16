@@ -1,3 +1,7 @@
+## [0.1.12](https://github.com/nidkil/vue-build-helper/compare/v0.1.11...v0.1.12) (2018-12-16)
+
+
+
 ## [0.1.11](https://github.com/nidkil/vue-build-helper/compare/v0.1.10...v0.1.11) (2018-12-16)
 
 
