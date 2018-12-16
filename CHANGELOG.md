@@ -1,3 +1,12 @@
+## [0.1.11](https://github.com/nidkil/vue-build-helper/compare/v0.1.10...v0.1.11) (2018-12-16)
+
+
+### Bug Fixes
+
+* changed from vewrbose to debug ([5a1ffb7](https://github.com/nidkil/vue-build-helper/commit/5a1ffb7))
+
+
+
 ## [0.1.10](https://github.com/nidkil/vue-build-helper/compare/v0.1.9...v0.1.10) (2018-12-15)
 
 
