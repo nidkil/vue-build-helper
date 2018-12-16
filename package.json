@@ -80,7 +80,7 @@
     "markdown-toc": "^1.2.0",
     "prettier": "^1.15.3",
     "release-it": "^9.1.0",
-    "use-pkg-version": "^0.1.7"
+    "use-pkg-version": "^0.1.9"
   },
   "config": {
     "commitizen": {
