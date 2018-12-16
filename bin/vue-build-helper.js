@@ -2,17 +2,25 @@
 
 const updater = require('update-notifier')
 const pkg = require('../package.json')
-const { requireIfElse } = require('../src/common/module-helpers')
+const chalk = require('chalk')
+
+function isDebug() {
+  return process.argv.indexOf('--debug') > -1 || process.argv.indexOf('-D') > -1
+}
 
 let cli = null
 try {
   // First try to load dist version
-  cli = require('../dist/vue-build-helper.cjs')
+  cli = require('../dist/vue-build-helper.es')
+  if (isDebug()) console.log(chalk.green('Using dist version'))
 } catch (e) {
   // Fallback to src version
   cli = require('../src/vue-build-helper-cli')
+  if (isDebug())
+    console.log(chalk.red('Using src version (fallback)'), e.message, e.stack.split('\n')[0])
 }
 
-// Check if there is a new version of the module is available, if so show a warning message
-updater({ pkg }).notify()
+// Check if there is a new version of the module is available, if so show a warning message (interval: 24 hrs)
+updater({ pkg, updateCheckInterval: 24 * 60 * 60 * 1000 }).notify()
+
 cli()
