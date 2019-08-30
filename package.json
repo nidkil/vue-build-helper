@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.19.0",
+    "commander": "^3.0.1",
     "envinfo": "^6.0.1",
     "filehound": "^1.16.5",
     "slash": "^2.0.0",
