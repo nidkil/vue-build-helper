@@ -52,7 +52,7 @@
     "node": ">=6"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
+    "chalk": "^3.0.0",
     "commander": "^2.19.0",
     "envinfo": "^6.0.1",
     "filehound": "^1.16.5",
